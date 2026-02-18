@@ -1,0 +1,13 @@
+{
+  "name": "buhdi-ws",
+  "version": "1.0.0",
+  "description": "Buhdi Node WebSocket relay server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.16.0",
+    "@supabase/supabase-js": "^2.39.0"
+  }
+}
