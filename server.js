@@ -303,10 +303,12 @@ server.listen(PORT, '0.0.0.0', () => {
 });
 
 // Graceful shutdown
-process.on('SIGTERM', () => {
-  log('SIGTERM received — closing connections');
-  for (const [, conn] of connections) {
-    conn.ws.close(1001, 'Server shutting down');
-  }
-  server.close(() => process.exit(0));
-});
+for (const sig of ['SIGTERM', 'SIGINT']) {
+  process.on(sig, () => {
+    log(`${sig} received — closing connections`);
+    for (const [, conn] of connections) {
+      conn.ws.close(1001, 'Server shutting down');
+    }
+    server.close(() => process.exit(0));
+  });
+}
